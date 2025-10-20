@@ -8,8 +8,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Product+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- Google Sign-In Library -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
+    <!-- Full Screen Loader -->
+    <div class="fullscreen-loader hidden" id="fullscreen-loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <p class="loader-text" id="loader-text">Processing...</p>
+        </div>
+    </div>
+
     <!-- Animated Background Particles -->
     <div class="particles-container" id="particles"></div>
     
@@ -26,17 +36,26 @@
         <main class="main-card">
             <!-- Header Section -->
             <div class="header-section">
-                <div class="logo-container">
-                    <div class="logo-badge pulse">
-                        <img src="./Google Student Ambassador_Logo_RGB_vertical.png" alt="GSA Logo" class="logo-img">
+                <!-- Enhanced Logo Container with Creative Layout -->
+                <div class="logo-container-creative">
+                    <div class="logo-wrapper gsa-logo">
+                        <div class="logo-badge-large pulse">
+                            <img src="./Google Student Ambassador_Logo_RGB_vertical.png" alt="GSA Logo" class="logo-img-large">
+                        </div>
+                        <div class="logo-glow"></div>
                     </div>
-                    <div class="logo-badge pulse" style="animation-delay: 0.5s;">
-                        <img src="./Gemini_SparkIcon_4C.png" alt="Gemini Spark Icon" class="logo-img">
+                    
+                    <div class="logo-divider">
+                        <div class="divider-line"></div>
+                        <div class="divider-icon">✨</div>
+                        <div class="divider-line"></div>
                     </div>
-                </div>
-                
-                <div class="gemini-logo-main fade-in">
-                    <img src="./Gemini_PrimaryLogo_FullColor.png" alt="Google Gemini Logo">
+                    
+                    <div class="logo-wrapper gemini-logo">
+                        <div class="gemini-logo-main fade-in">
+                            <img src="./Gemini_PrimaryLogo_FullColor.png" alt="Google Gemini Logo">
+                        </div>
+                    </div>
                 </div>
                 
                 <h1 class="main-title slide-up">
@@ -64,76 +83,89 @@
             </div>
 
             <div class="content-section">
-                <!-- Registration Section -->
+                <!-- Registration Section with Google Sign-In -->
                 <section id="registration-section" class="section active">
                     <div class="section-header">
                         <div class="icon-badge bounce">🚀</div>
                         <h2 class="section-title">Start Your Challenge</h2>
-                        <p class="section-description">Enter your details to begin your AI journey</p>
+                        <p class="section-description">Sign in with Google and provide your student email</p>
                     </div>
                     
-                    <form id="registration-form" class="form-container">
-                        <div class="form-group">
-                            <label for="name" class="form-label">
-                                <span class="label-icon">👤</span>
-                                Full Name
-                            </label>
-                            <input 
-                                type="text" 
-                                id="name" 
-                                name="name" 
-                                required 
-                                class="form-input"
-                                placeholder="John Doe"
-                            >
-                            <div class="input-line"></div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="student-email" class="form-label">
-                                <span class="label-icon">🎓</span>
-                                Student Email
-                            </label>
-                            <input 
-                                type="email" 
-                                id="student-email" 
-                                name="student-email" 
-                                required 
-                                class="form-input"
-                                placeholder="your.email@university.edu"
-                            >
-                            <div class="input-line"></div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="gemini-email" class="form-label">
-                                <span class="label-icon">✨</span>
-                                Google Account (for Gemini)
-                            </label>
-                            <input 
-                                type="email" 
-                                id="gemini-email" 
-                                name="gemini-email" 
-                                required 
-                                class="form-input"
-                                placeholder="yourname@gmail.com"
-                            >
-                            <div class="input-line"></div>
-                        </div>
-                        
-                        <button type="submit" id="register-btn" class="primary-btn">
-                            <span class="btn-content">
-                                <span class="btn-text">Let's Go!</span>
-                                <span class="btn-arrow">→</span>
-                            </span>
-                            <div class="btn-loader">
-                                <div class="spinner"></div>
+                    <!-- Google Sign-In Button -->
+                    <div class="google-signin-container">
+                        <div class="signin-card" id="signin-card">
+                            <div class="signin-icon">🔐</div>
+                            <h3 class="signin-title">Step 1: Authenticate with Google</h3>
+                            <p class="signin-description">
+                                Sign in with the <strong>same Google account</strong> you'll use for Gemini prompts
+                            </p>
+                            <div class="warning-box">
+                                <span class="warning-icon">⚠️</span>
+                                <p><strong>Important:</strong> Use the same Google account for Gemini interactions, otherwise certificate generation will fail.</p>
                             </div>
-                            <div class="btn-ripple"></div>
-                        </button>
+                            <div id="g_id_onload"
+                                 data-client_id="938940326613-35u14v5af9ce48e2h1i7ou2l3l8o1t8k.apps.googleusercontent.com"
+                                 data-callback="handleCredentialResponse"
+                                 data-auto_prompt="false">
+                            </div>
+                            <div class="g_id_signin" 
+                                 data-type="standard"
+                                 data-size="large"
+                                 data-theme="outline"
+                                 data-text="sign_in_with"
+                                 data-shape="rectangular"
+                                 data-logo_alignment="left"
+                                 data-width="320">
+                            </div>
+                        </div>
                         
-                        <p id="error-message" class="error-message"></p>
-                    </form>
+                        <!-- Student Email Form (shown after Google Sign-In for new users) -->
+                        <form id="student-email-form" class="form-container hidden">
+                            <div class="step-indicator">
+                                <span class="step-icon">✅</span>
+                                <span class="step-text">Signed in as: <strong id="signed-in-email"></strong></span>
+                            </div>
+                            
+                            <h3 class="form-section-title">Step 2: Enter Your Student Email</h3>
+                            
+                            <div class="form-group">
+                                <label for="student-email" class="form-label">
+                                    <span class="label-icon">🎓</span>
+                                    Student Email (University/College Email)
+                                </label>
+                                <input 
+                                    type="email" 
+                                    id="student-email" 
+                                    name="student-email" 
+                                    required 
+                                    class="form-input"
+                                    placeholder="your.email@university.edu"
+                                >
+                                <div class="input-line"></div>
+                            </div>
+                            
+                            <button type="submit" id="register-btn" class="primary-btn">
+                                <span class="btn-content">
+                                    <span class="btn-text">Complete Registration</span>
+                                    <span class="btn-arrow">→</span>
+                                </span>
+                                <div class="btn-loader">
+                                    <div class="spinner"></div>
+                                </div>
+                                <div class="btn-ripple"></div>
+                            </button>
+                            
+                            <p id="error-message" class="error-message"></p>
+                        </form>
+                    </div>
+                    
+                    <!-- Logout Button (shown when returning user) -->
+                    <div class="logout-container hidden" id="logout-container">
+                        <button id="logout-btn" class="logout-btn">
+                            <span>🚪</span>
+                            Sign Out & Start Fresh
+                        </button>
+                    </div>
                 </section>
 
                 <!-- Prompts Section -->
@@ -154,6 +186,14 @@
                     <div class="motivational-banner">
                         <div class="motivation-icon">🎯</div>
                         <p>Keep going! Each prompt brings you closer to your certificate!</p>
+                    </div>
+                    
+                    <!-- Return to Home Button -->
+                    <div class="action-buttons">
+                        <button id="home-btn-prompts" class="secondary-btn">
+                            <span>🏠</span>
+                            Start Fresh
+                        </button>
                     </div>
                 </section>
 
@@ -179,18 +219,25 @@
                         </div>
                     </div>
                     
-                    <button id="generate-certificate-btn" class="certificate-btn">
-                        <span class="cert-btn-content">
-                            <span class="cert-icon">📜</span>
-                            <span class="cert-text">Generate My Certificate</span>
-                            <span class="cert-sparkle">✨</span>
-                        </span>
-                        <div class="cert-btn-glow"></div>
-                    </button>
+                    <!-- Certificate Action Area -->
+                    <div id="certificate-action-area">
+                        <button id="generate-certificate-btn" class="certificate-btn">
+                            <span class="cert-btn-content">
+                                <span class="cert-icon">📜</span>
+                                <span class="cert-text">Generate My Certificate</span>
+                                <span class="cert-sparkle">✨</span>
+                            </span>
+                            <div class="cert-btn-glow"></div>
+                        </button>
+                    </div>
                     
-                    <p class="development-note">
-                        🔧 Certificate generation coming soon...
-                    </p>
+                    <!-- Return to Home Button -->
+                    <div class="action-buttons" style="margin-top: 20px;">
+                        <button id="home-btn-cert" class="secondary-btn">
+                            <span>🏠</span>
+                            Start Fresh
+                        </button>
+                    </div>
                 </section>
             </div>
         </main>
