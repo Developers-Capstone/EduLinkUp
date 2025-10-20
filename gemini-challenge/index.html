@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Student Ambassador | Certificate Challenge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Product+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Animated Background Particles -->
+    <div class="particles-container" id="particles"></div>
+    
+    <!-- Floating Gemini Icons -->
+    <div class="floating-icons">
+        <div class="float-icon" style="--delay: 0s; --duration: 20s;">✨</div>
+        <div class="float-icon" style="--delay: 5s; --duration: 25s;">🎯</div>
+        <div class="float-icon" style="--delay: 10s; --duration: 22s;">🚀</div>
+        <div class="float-icon" style="--delay: 15s; --duration: 28s;">💡</div>
+    </div>
+
+    <div class="container">
+        <!-- Main Card -->
+        <main class="main-card">
+            <!-- Header Section -->
+            <div class="header-section">
+                <div class="logo-container">
+                    <div class="logo-badge pulse">
+                        <img src="./Google Student Ambassador_Logo_RGB_vertical.png" alt="GSA Logo" class="logo-img">
+                    </div>
+                    <div class="logo-badge pulse" style="animation-delay: 0.5s;">
+                        <img src="./Gemini_SparkIcon_4C.png" alt="Gemini Spark Icon" class="logo-img">
+                    </div>
+                </div>
+                
+                <div class="gemini-logo-main fade-in">
+                    <img src="./Gemini_PrimaryLogo_FullColor.png" alt="Google Gemini Logo">
+                </div>
+                
+                <h1 class="main-title slide-up">
+                    <span class="title-gradient">Unlock Your Certificate</span>
+                    <span class="title-subtitle">of Participation</span>
+                </h1>
+                
+                <p class="main-description slide-up" style="animation-delay: 0.2s;">
+                    <span class="highlight-text">Engage with 5 creative Gemini prompts</span> and discover the power of AI 
+                    <br>Earn your <strong>official certificate</strong> and join the future! 🎓
+                </p>
+                
+                <!-- Progress Bar Preview (appears after registration) -->
+                <div class="progress-preview hidden" id="progress-preview">
+                    <div class="progress-wrapper">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                            <div class="progress-glow"></div>
+                        </div>
+                        <div class="progress-text">
+                            <span id="progress-count">0</span>/5 Prompts Completed
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <!-- Registration Section -->
+                <section id="registration-section" class="section active">
+                    <div class="section-header">
+                        <div class="icon-badge bounce">🚀</div>
+                        <h2 class="section-title">Start Your Challenge</h2>
+                        <p class="section-description">Enter your details to begin your AI journey</p>
+                    </div>
+                    
+                    <form id="registration-form" class="form-container">
+                        <div class="form-group">
+                            <label for="name" class="form-label">
+                                <span class="label-icon">👤</span>
+                                Full Name
+                            </label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                required 
+                                class="form-input"
+                                placeholder="John Doe"
+                            >
+                            <div class="input-line"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="student-email" class="form-label">
+                                <span class="label-icon">🎓</span>
+                                Student Email
+                            </label>
+                            <input 
+                                type="email" 
+                                id="student-email" 
+                                name="student-email" 
+                                required 
+                                class="form-input"
+                                placeholder="your.email@university.edu"
+                            >
+                            <div class="input-line"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gemini-email" class="form-label">
+                                <span class="label-icon">✨</span>
+                                Google Account (for Gemini)
+                            </label>
+                            <input 
+                                type="email" 
+                                id="gemini-email" 
+                                name="gemini-email" 
+                                required 
+                                class="form-input"
+                                placeholder="yourname@gmail.com"
+                            >
+                            <div class="input-line"></div>
+                        </div>
+                        
+                        <button type="submit" id="register-btn" class="primary-btn">
+                            <span class="btn-content">
+                                <span class="btn-text">Let's Go!</span>
+                                <span class="btn-arrow">→</span>
+                            </span>
+                            <div class="btn-loader">
+                                <div class="spinner"></div>
+                            </div>
+                            <div class="btn-ripple"></div>
+                        </button>
+                        
+                        <p id="error-message" class="error-message"></p>
+                    </form>
+                </section>
+
+                <!-- Prompts Section -->
+                <section id="prompts-section" class="section">
+                    <div class="welcome-banner">
+                        <div class="welcome-content">
+                            <h2 class="welcome-title">
+                                Welcome, <span id="user-name" class="name-highlight"></span>! 👋
+                            </h2>
+                            <p class="welcome-description">
+                                Click each prompt card to explore. Your progress is saved automatically ⚡
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="prompts-grid" id="prompt-list"></div>
+                    
+                    <div class="motivational-banner">
+                        <div class="motivation-icon">🎯</div>
+                        <p>Keep going! Each prompt brings you closer to your certificate!</p>
+                    </div>
+                </section>
+
+                <!-- Certificate Section -->
+                <section id="certificate-section" class="section">
+                    <div class="celebration-header">
+                        <div class="confetti-container" id="confetti-container"></div>
+                        <div class="trophy-icon">🏆</div>
+                        <h2 class="celebration-title">
+                            <span class="celebration-text">Challenge Complete!</span>
+                            <span class="celebration-emoji">🎉✨🎊</span>
+                        </h2>
+                        <p class="celebration-description">
+                            Congratulations! You've mastered all prompts and unlocked your certificate
+                        </p>
+                    </div>
+                    
+                    <div class="certificate-preview">
+                        <div class="preview-badge">Certificate Preview</div>
+                        <div class="preview-container">
+                            <img src="./Preview Certificate.png" alt="Sample Certificate" class="preview-image">
+                            <div class="preview-shine"></div>
+                        </div>
+                    </div>
+                    
+                    <button id="generate-certificate-btn" class="certificate-btn">
+                        <span class="cert-btn-content">
+                            <span class="cert-icon">📜</span>
+                            <span class="cert-text">Generate My Certificate</span>
+                            <span class="cert-sparkle">✨</span>
+                        </span>
+                        <div class="cert-btn-glow"></div>
+                    </button>
+                    
+                    <p class="development-note">
+                        🔧 Certificate generation coming soon...
+                    </p>
+                </section>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="footer-text">
+                <span class="footer-icon">💙</span>
+                An initiative by the <strong>Google Student Ambassador Program</strong>
+            </p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">About</a>
+                <span class="footer-divider">•</span>
+                <a href="#" class="footer-link">Privacy</a>
+                <span class="footer-divider">•</span>
+                <a href="#" class="footer-link">Terms</a>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
