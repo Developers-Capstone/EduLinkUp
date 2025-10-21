@@ -1424,6 +1424,8 @@ body {
     .logo-divider {
         flex-direction: row;
         width: 100%;
+        justify-content: center; 
+        align-items: center;
     }
     
     .divider-line {
