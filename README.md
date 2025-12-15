@@ -256,7 +256,7 @@ For a detailed walkthrough of EduLinkUp's features and how to use them, check ou
 <summary><strong>🗂️ Click to view detailed project architecture</strong></summary>
 
 ```bash
-edulinkup-website/
+EduLinkUp/
 ├── app/                          # Next.js App Router pages
 │   ├── layout.tsx                # Root layout with providers
 │   ├── page.tsx                  # Home page
@@ -367,8 +367,8 @@ edulinkup-website/
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/Developers-Capstone/edulinkup-website.git
-   cd edulinkup-website
+   git clone https://github.com/Developers-Capstone/EduLinkUp.git
+   cd EduLinkUp
    ```
 
 2. **Install dependencies:**
