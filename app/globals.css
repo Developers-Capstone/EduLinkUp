@@ -1,0 +1,413 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Updated to dark theme with neon blue/purple accents for EduLinkUp */
+:root {
+  --background: oklch(0.07 0.01 270);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.1 0.01 270);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.08 0.01 270);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.62 0.21 255);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.55 0.24 295);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.18 0.01 270);
+  --muted-foreground: oklch(0.65 0.02 250);
+  --accent: oklch(0.55 0.24 295);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.25 0.05 255 / 0.3);
+  --input: oklch(0.18 0.01 270 / 0.8);
+  --ring: oklch(0.62 0.21 255);
+  --chart-1: oklch(0.62 0.21 255);
+  --chart-2: oklch(0.55 0.24 295);
+  --chart-3: oklch(0.7 0.15 180);
+  --chart-4: oklch(0.75 0.15 85);
+  --chart-5: oklch(0.65 0.2 25);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.1 0.01 270);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.62 0.21 255);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.18 0.01 270);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(0.25 0.05 255 / 0.3);
+  --sidebar-ring: oklch(0.62 0.21 255);
+}
+
+.dark {
+  --background: oklch(0.07 0.01 270);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.1 0.01 270);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.08 0.01 270);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.62 0.21 255);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.55 0.24 295);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.18 0.01 270);
+  --muted-foreground: oklch(0.65 0.02 250);
+  --accent: oklch(0.55 0.24 295);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.5 0.2 25);
+  --destructive-foreground: oklch(0.9 0.15 25);
+  --border: oklch(0.25 0.05 255 / 0.3);
+  --input: oklch(0.18 0.01 270 / 0.8);
+  --ring: oklch(0.62 0.21 255);
+  --chart-1: oklch(0.62 0.21 255);
+  --chart-2: oklch(0.55 0.24 295);
+  --chart-3: oklch(0.7 0.15 180);
+  --chart-4: oklch(0.75 0.15 85);
+  --chart-5: oklch(0.65 0.2 25);
+  --sidebar: oklch(0.1 0.01 270);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.62 0.21 255);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.18 0.01 270);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(0.25 0.05 255 / 0.3);
+  --sidebar-ring: oklch(0.62 0.21 255);
+}
+
+@theme inline {
+  /* Updated font to Inter for EduLinkUp */
+  --font-sans: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Custom neon colors for EduLinkUp */
+  --color-neon-blue: #3b82f6;
+  --color-neon-purple: #8b5cf6;
+  --color-neon-cyan: #06b6d4;
+  --color-glass: rgba(15, 15, 25, 0.6);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Custom utility classes for EduLinkUp glassmorphism and effects */
+@layer utilities {
+  .glass {
+    background: var(--color-glass);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--color-glass-border);
+  }
+
+  .glass-strong {
+    background: rgba(15, 15, 25, 0.85);
+    backdrop-filter: blur(24px);
+    border: 1px solid var(--color-glass-border);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-neon-blue), var(--color-neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 0.1);
+  }
+
+  .glow-purple {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.1);
+  }
+
+  .hover-glow {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.4), 0 0 60px rgba(139, 92, 246, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulseGlow {
+
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+
+    50% {
+      box-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
+    }
+  }
+}
+
+/* Custom styles for markdown content in lesson notes */
+@layer components {
+  .markdown-content h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .markdown-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .markdown-content p {
+    color: rgb(209, 213, 219);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .markdown-content strong {
+    color: white;
+    font-weight: 600;
+  }
+
+  .markdown-content ul,
+  .markdown-content ol {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .markdown-content ul {
+    list-style-type: disc;
+  }
+
+  .markdown-content ol {
+    list-style-type: decimal;
+  }
+
+  .markdown-content li {
+    color: rgb(209, 213, 219);
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .markdown-content code {
+    background-color: rgb(17, 24, 39);
+    color: rgb(96, 165, 250);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-family: ui-monospace, monospace;
+  }
+
+  .markdown-content pre {
+    background-color: rgb(17, 24, 39);
+    border: 1px solid rgb(55, 65, 81);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    overflow-x: auto;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .markdown-content pre code {
+    background-color: transparent;
+    color: rgb(74, 222, 128);
+    padding: 0;
+    font-size: 0.875rem;
+  }
+}
+/* Ti
+pTap Editor Styles */
+.ProseMirror {
+  outline: none;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: rgba(255, 255, 255, 0.3);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.ProseMirror p {
+  color: rgb(209, 213, 219);
+  line-height: 1.75;
+  margin-bottom: 0.75rem;
+}
+
+.ProseMirror strong {
+  color: white;
+  font-weight: 600;
+}
+
+.ProseMirror em {
+  font-style: italic;
+}
+
+.ProseMirror code {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: rgb(96, 165, 250);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-family: ui-monospace, monospace;
+}
+
+.ProseMirror pre {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ProseMirror pre code {
+  background-color: transparent;
+  color: rgb(74, 222, 128);
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 1.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.ProseMirror ul {
+  list-style-type: disc;
+}
+
+.ProseMirror ol {
+  list-style-type: decimal;
+}
+
+.ProseMirror li {
+  color: rgb(209, 213, 219);
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.ProseMirror blockquote {
+  border-left: 3px solid var(--color-neon-blue);
+  padding-left: 1rem;
+  margin-left: 0;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: rgb(156, 163, 175);
+  font-style: italic;
+}
+
+.ProseMirror a {
+  color: var(--color-neon-blue);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ProseMirror a:hover {
+  color: var(--color-neon-cyan);
+}
+
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
